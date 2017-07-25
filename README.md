@@ -107,11 +107,11 @@ Then, use [pg-promise](https://www.npmjs.com/package/pg-promise) and [Mocha](htt
 
 ### Requirements
 
-- [ ] __10:__ All files are stored under the `part-2/` folder
-- [ ] __10:__ Database schema (all `CREATE TABLE` statements) is defined in a file `schema.sql`
-- [ ] __10:__ SQL script to insert [grocery seed data][grocery-data] and load from CSV is created in a file `load-data.sql`
-- [ ] __10:__ All database query functions are written in a file `database.js`, and tests for queries are written in a file `database_test.js`
-- [ ] __10:__ Tests can be run with the command `$ npm test`
+- [x] __10:__ All files are stored under the `part-2/` folder
+- [x] __10:__ Database schema (all `CREATE TABLE` statements) is defined in a file `schema.sql`
+- [x] __10:__ SQL script to insert [grocery seed data][grocery-data] and load from CSV is created in a file `load-data.sql`
+- [x] __10:__ All database query functions are written in a file `database.js`, and tests for queries are written in a file `database_test.js`
+- [x] __10:__ Tests can be run with the command `$ npm test`
 
 User Stories: Ensure that your schema design can satisfy the following scenarios
 
