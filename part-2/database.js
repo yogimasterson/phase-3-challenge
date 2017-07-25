@@ -13,15 +13,15 @@ function allItems () {
 }
 
 function itemsInSection(section) {
-    return db.any('SELECT id, name FROM grocery_items WHERE section = $1', section)
+    return db.any('SELECT product_id, product_name FROM grocery_items WHERE section = $1', section)
 }
 
 function cheapItems() {
-    return db.any('SELECT id, price FROM grocery_items WHERE price < 10.00 ORDER BY price ASC')
+    return db.any('SELECT product_id, product_name, price FROM grocery_items WHERE price < 10.00 ORDER BY price ASC')
 }
 
 function countItemsInSection(section) {
-    return db.any('SELECT COUNT(id) FROM grocery_items WHERE section = $1', section)
+    return db.any('SELECT COUNT(product_id) FROM grocery_items WHERE section = $1', section)
 }
 
 function mostRecentOrders() {
@@ -29,11 +29,11 @@ function mostRecentOrders() {
 }
 
 function lastShopperName() {
-    return db.any('SELECT name FROM orders ORDER BY order_date DESC LIMIT 1')
+    return db.any('SELECT shopper_name FROM shoppers LEFT JOIN orders ON shopper_id = orders.shopper_id ORDER BY order_date DESC LIMIT 1')
 }
 
 function orderTotal(id) {
-    return db.any('SELECT SUM(price) FROM grocery_items LEFT JOIN orders on grocery_items.name = orders.name WHERE order_id = $1', id)
+    return db.any('SELECT SUM(price) FROM grocery_items LEFT JOIN orders ON product_id = orders.product_id WHERE order_id = $1', id)
 }
 
 

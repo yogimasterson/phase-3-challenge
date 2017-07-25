@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/database_test.js",
     "create-db": "psql < database/schema.sql",
     "load-db": "psql < database/load-data.sql"
   },
