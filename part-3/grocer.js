@@ -14,6 +14,12 @@ const clear_button = document.getElementById("clear-button")
 const elem = document.getElementById("my-list")
 const total_amount = document.getElementById("total-amount")
 
+function clearList() {
+	while (elem.firstChild) {
+		elem.removeChild(elem.firstChild);
+	}
+}
+
 clear_button.addEventListener("click", function () {
 	clearList()
 	total_amount.innerHTML = '0'
@@ -32,9 +38,30 @@ if (!shoppingCart) {
 	cart_item_count.innerHTML = shoppingCart.length
 }
 
+function createShoppingList(array) {
+	while (elem.firstChild) {
+		elem.removeChild(elem.firstChild);
+	}
+	let ul = document.getElementById('my-list')
+
+	for (let i = 0; i < array.length; i++) {
+		let li = document.createElement('li')
+		li.appendChild(document.createTextNode(array[i]))
+		ul.appendChild(li)
+	}
+}
+
 cart_button.addEventListener("click", function () {
 	createShoppingList(shoppingCart)
 })
+
+function htmlUpdate() {
+	cart_item_count.innerHTML = shoppingCart.length
+
+	total_amount.innerHTML = Math.ceil(itemPrice.map(function (x) {
+		return parseFloat(x, 10)
+	}).reduce((a, b) => a + b, 0) * 100) / 100
+}
 
 onion_button.addEventListener("click", function () {
 	shoppingCart.push(["Onion", " $1.11"])
@@ -78,39 +105,13 @@ pizza_button.addEventListener("click", function () {
 	htmlUpdate()
 })
 
-function clearList() {
-	while (elem.firstChild) {
-		elem.removeChild(elem.firstChild);
-	}
-}
-
-function htmlUpdate() {
-	cart_item_count.innerHTML = shoppingCart.length
-	total_amount.innerHTML = roundNearest(itemPrice.map(function (x) {
-		return parseFloat(x, 10)
-	}).reduce((a, b) => a + b, 0), -100)
-}
-
-function roundNearest(num, acc) {
-	if (acc < 0) {
-		return Math.round(num * acc) / acc;
-	} else {
-		return Math.round(num / acc) * acc;
-	}
-}
-
-function createShoppingList(array) {
-	while (elem.firstChild) {
-		elem.removeChild(elem.firstChild);
-	}
-	let ul = document.getElementById('my-list')
-
-	for (let i = 0; i < array.length; i++) {
-		let li = document.createElement('li')
-		li.appendChild(document.createTextNode(array[i]))
-		ul.appendChild(li)
-	}
-}
+// function roundNearest(num, acc) {
+// 	if (acc < 0) {
+// 		return Math.round(num * acc) / acc;
+// 	} else {
+// 		return Math.round(num / acc) * acc;
+// 	}
+// }
 
 
 // Modal Code

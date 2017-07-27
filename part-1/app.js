@@ -36,7 +36,6 @@ app.get('/api/square', (req, res) => {
 app.post('/api/compute', (req, res) => {
   const operator = req.body.operator
 	const operands = req.body.operands
-	console.log(operator)
 
   if (operator === '-') {
     res.send({"result": operands[0] - operands[1]})
